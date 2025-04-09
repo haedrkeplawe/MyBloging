@@ -101,6 +101,7 @@ app.post("/login", async (req, res) => {
 
 app.get("/profile", async (req, res) => {
   const { token } = req.cookies;
+  console.log(token);
   try {
     jwt.verify(token, secret, {
        maxAge: 15 * 24 * 60 * 60 * 1000,
