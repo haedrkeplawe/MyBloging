@@ -83,7 +83,6 @@ app.post("/login", async (req, res) => {
               maxAge: 15 * 24 * 60 * 60 * 1000,
               httpOnly: true, // prevent xss attacks cross-site scripting attacks
               sameSite: "strict",
-              secure: process.env.NODE_ENV !== "development",
             })
             .json({
               id: userDoc._id,
@@ -103,11 +102,7 @@ app.get("/profile", async (req, res) => {
   const { token } = req.cookies;
   try {
     jwt.verify(token, secret, {
-              maxAge: 15 * 24 * 60 * 60 * 1000,
-              httpOnly: true, // prevent xss attacks cross-site scripting attacks
-              sameSite: "strict",
-              secure: process.env.NODE_ENV !== "development",
-            }, (err, info) => {
+             }, (err, info) => {
       if (err) throw err;
       res.json(info);
     });
