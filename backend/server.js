@@ -59,6 +59,7 @@ app.post("/register", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
+  console.log(999)
   const { username, password } = req.body;
   try {
     const userDoc = await User.findOne({ username });
