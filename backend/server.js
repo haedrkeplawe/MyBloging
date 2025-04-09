@@ -84,6 +84,7 @@ app.post("/login", async (req, res) => {
               maxAge: 15 * 24 * 60 * 60 * 1000,
               httpOnly: true, // prevent xss attacks cross-site scripting attacks
               sameSite: "strict",
+              secure: false
             })
             .json({
               id: userDoc._id,
@@ -107,6 +108,7 @@ app.get("/profile", async (req, res) => {
        maxAge: 15 * 24 * 60 * 60 * 1000,
       httpOnly: true, // prevent xss attacks cross-site scripting attacks
       sameSite: "strict",
+      secure: false
              }, (err, info) => {
       if (err) throw err;
       res.json(info);
