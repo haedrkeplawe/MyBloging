@@ -103,6 +103,9 @@ app.get("/profile", async (req, res) => {
   const { token } = req.cookies;
   try {
     jwt.verify(token, secret, {
+       maxAge: 15 * 24 * 60 * 60 * 1000,
+      httpOnly: true, // prevent xss attacks cross-site scripting attacks
+      sameSite: "strict",
              }, (err, info) => {
       if (err) throw err;
       res.json(info);
