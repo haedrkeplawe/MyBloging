@@ -102,7 +102,12 @@ app.post("/login", async (req, res) => {
 app.get("/profile", async (req, res) => {
   const { token } = req.cookies;
   try {
-    jwt.verify(token, secret, {}, (err, info) => {
+    jwt.verify(token, secret, {
+              maxAge: 15 * 24 * 60 * 60 * 1000,
+              httpOnly: true, // prevent xss attacks cross-site scripting attacks
+              sameSite: "strict",
+              secure: process.env.NODE_ENV !== "development",
+            }, (err, info) => {
       if (err) throw err;
       res.json(info);
     });
