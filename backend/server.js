@@ -25,7 +25,7 @@ v2.config({
 app.use(
   cors({
     credentials: true,
-    origin: ["https://haedrblog.netlify.app", "http://localhost:3000"],
+    origin: ["https://mybloginghaedr.netlify.app", "http://localhost:3000"],
   })
 );
 app.use(express.urlencoded({ extended: false }));
